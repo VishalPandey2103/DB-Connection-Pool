@@ -2,6 +2,7 @@
 #define CONNECTION_POOL_H
 
 #include <pthread.h>
+#include <stack>
 #include "connection.h"
 
 #define MAX_CONNECTIONS 16
@@ -16,8 +17,7 @@ public:
 
 private:
     Connection connections[MAX_CONNECTIONS];
-    int available[MAX_CONNECTIONS];
-    int top;
+    std::stack<Connection*> available;
     int pool_size;
 
     pthread_mutex_t lock;
