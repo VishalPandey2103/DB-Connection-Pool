@@ -8,13 +8,18 @@
 
 class ConnectionPool {
 public:
-    ConnectionPool();
+    static ConnectionPool& getInstance();
+
     void init(int pool_size);
     Connection* acquire();
     void release(Connection* conn);
     void shutdown();
 
 private:
+    ConnectionPool();
+    ConnectionPool(const ConnectionPool&);
+    ConnectionPool& operator=(const ConnectionPool&);
+
     Connection connections[MAX_CONNECTIONS];
     int available[MAX_CONNECTIONS];
     int top;

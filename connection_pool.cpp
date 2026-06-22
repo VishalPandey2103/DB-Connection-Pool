@@ -1,5 +1,10 @@
 #include "connection_pool.h"
 
+ConnectionPool& ConnectionPool::getInstance() {
+    static ConnectionPool instance;
+    return instance;
+}
+
 ConnectionPool::ConnectionPool() {
     top = 0;
     pool_size = 0;
