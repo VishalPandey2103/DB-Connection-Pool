@@ -1,6 +1,9 @@
 #include "connection.h"
-#include <cstdio>
+#include <iostream>
+#include <string>
 #include <unistd.h>
+
+using namespace std;
 
 Connection::Connection() {
     id = -1;
@@ -11,12 +14,12 @@ void Connection::open(int id) {
     this->id = id;
     usleep(100000);
     is_open = true;
-    printf("[pool] connection %d opened\n", id);
+    cout << "[pool] connection " << id << " opened\n";
 }
 
 void Connection::execute(const char* query) {
     usleep(50000);
-    printf("    connection %d ran query: %s\n", id, query);
+    cout << "    connection " << id << " ran query: " << query << "\n";
 }
 
 int Connection::get_id() {
